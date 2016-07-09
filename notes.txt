@@ -1,0 +1,43 @@
+Models
+Songs 
+  belongs_to :artist
+  belongs_to :genre
+Artists
+  has_many :songs
+Genres 
+  has_many :songs
+
+Migrations 
+rails g migration Songs
+rails g migration add_name_to_songs name:string
+rails g migration add_artist_id_to_songs artist_id:integer
+rails g migration add_genre_id_to_songs genre_id:integer
+
+rails g migration Artists
+rails g migration add_name_to_artists name:string
+
+rails g migration Genres
+rails g migration add name_to_genres name:string
+
+Controller 
+private
+def song_params
+  params.require(:song).permit(:name,:artist_id,:genre_id)
+end
+
+private
+def artist_params
+  params.require(:artist).permit(:name)
+end
+
+private
+def genre_params
+  params.require(:genre).permit(:name)
+end
+
+Routes 
+resources:
+Views 
+Song, show 
+  song's genre and artist and link 
+
